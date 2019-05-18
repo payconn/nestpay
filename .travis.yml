@@ -1,0 +1,31 @@
+language: php
+
+php:
+  - '7.1.24'
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+before_install:
+  - phpenv config-rm xdebug.ini
+  - composer self-update
+
+install:
+  - composer install
+  - composer global require friendsofphp/php-cs-fixer
+  - export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+script:
+  # php CS check
+  - CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE)
+  - if ! echo "${CHANGED_FILES}" | grep -qE "^(\\.php_cs(\\.dist)?|composer\\.lock)$"; then IFS=$'\n' PHP_CS_EXTRA_ARGS=('--path-mode=intersection' '--' ${CHANGED_FILES[@]}); fi
+  - echo "PHP CS FIXER extra args -> ${PHP_CS_EXTRA_ARGS}"
+  - php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation --using-cache=no "${PHP_CS_EXTRA_ARGS[@]}" || travis_terminate 1
+  # static analyze
+  - ./vendor/bin/phpstan analyze src/ -l max || travis_terminate 1
+  # unit tests
+  - ./vendor/bin/phpunit --stop-on-failure --stop-on-error
+
+git:
+submodules: false

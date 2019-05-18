@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {"Payconn\\Nestpay\\": "src/Nestpay"},
+    "classmap": ["src/Nestpay.php"]
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.3",
+    "payconn/common": "^1.0"
+  }
+}
