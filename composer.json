@@ -1,10 +1,43 @@
 {
+  "name": "payconn/nestpay",
+  "description": "Payconn payment processing library for PHP",
+  "keywords": [
+    "nestpay",
+    "est",
+    "axess",
+    "bonus",
+    "cardfinans",
+    "maximum",
+    "paraf",
+    "world"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Murat SAC",
+      "email": "muratsac@mail.com"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "~6.0",
+    "symfony/http-foundation": "^2.1||^3||^4",
+    "payconn/common": "~1.2"
+  },
   "autoload": {
-    "psr-4": {"Payconn\\Nestpay\\": "src/Nestpay"},
+    "psr-4": {
+      "Payconn\\Nestpay\\": "src/Nestpay"
+    },
     "classmap": ["src/Nestpay.php"]
   },
-  "require": {
-    "guzzlehttp/guzzle": "^6.3",
-    "payconn/common": "^1.0"
+  "autoload-dev": {
+    "psr-4": {
+      "Payconn\\Tests\\Nestpay\\": "tests/Nestpay"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.3",
+    "phpstan/phpstan": "^0.11.2"
   }
 }
