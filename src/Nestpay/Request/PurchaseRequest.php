@@ -2,6 +2,7 @@
 
 namespace Payconn\Nestpay\Request;
 
+use Payconn\Common\HttpClient;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Response\PurchaseResponse;
 use Payconn\Nestpay\Token;
@@ -36,8 +37,8 @@ class PurchaseRequest extends NestpayRequest
         $body->addChild('Password', $token->getPassword());
         $body->addChild('ClientId', $token->getClientId());
         $body->addChild('IPAddress', (string) $this->getIpAddress());
-        $body->addChild('Total', (float) $this->getAmount());
-        $body->addChild('Taksit', (int) $this->getInstallment());
+        $body->addChild('Total', (string) $this->getAmount());
+        $body->addChild('Taksit', (string) $this->getInstallment());
 
         if ($creditCard = $this->getCreditCard()) {
             $body->addChild('Number', $creditCard->getNumber());
@@ -45,7 +46,9 @@ class PurchaseRequest extends NestpayRequest
             $body->addChild('Cvv2Val', $creditCard->getCvv());
         }
 
-        $response = $this->getHttpClient()->request('POST', $this->getBaseUrl(), [
+        /** @var HttpClient $httpClient */
+        $httpClient = $this->getHttpClient();
+        $response = $httpClient->request('POST', $this->getBaseUrl(), [
             'body' => $body->asXML(),
         ]);
 
