@@ -22,6 +22,20 @@ processing library for PHP. This package implements common classes required by P
 * purchase
 * void
 
+## Basic Usage
+```php
+use Payconn\Nestpay;
+
+$gateway = new Nestpay(new Nestpay\Token('YOUR_CLIENT_ID', 'YOUR_USERNAME', 'YOUR_PASS'));
+$response = $gateway->purchase([
+    'creditCard' => new \Payconn\Common\CreditCard('Holder Name', '4355084355084358', '26', '12', '000'),
+    'amount' => 1,
+    'installment' => 1,
+    'testMode' => true,
+    'currency' => Nestpay\Currency::TRY,
+]);
+```
+
 ## Change log
 
 Please see [UPGRADE](UPGRADE.md) for more information on how to upgrade to the latest version.
