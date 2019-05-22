@@ -1,0 +1,43 @@
+<?php
+
+namespace Payconn\Nestpay\Response;
+
+use Payconn\Common\AbstractResponse;
+
+class PurchaseResponse extends AbstractResponse
+{
+    public function isSuccessful(): bool
+    {
+        return 'Approved' === $this->getParameters()->get('Response');
+    }
+
+    public function getResponseMessage(): string
+    {
+        return $this->getParameters()->get('Response');
+    }
+
+    public function getResponseCode(): string
+    {
+        return $this->getParameters()->get('ProcReturnCode');
+    }
+
+    public function getResponseBody(): array
+    {
+        return $this->getParameters()->all();
+    }
+
+    public function isRedirect(): bool
+    {
+        return false;
+    }
+
+    public function getRedirectForm(): string
+    {
+        return '';
+    }
+
+    public function getOrderId(): string
+    {
+        return $this->getParameters()->get('OrderId');
+    }
+}
