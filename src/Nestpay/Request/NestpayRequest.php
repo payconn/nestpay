@@ -4,7 +4,7 @@ namespace Payconn\Nestpay\Request;
 
 use Payconn\Common\AbstractRequest;
 
-abstract class Request extends AbstractRequest
+abstract class NestpayRequest extends AbstractRequest
 {
     public function getBaseUrl(): string
     {
