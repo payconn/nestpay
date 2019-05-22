@@ -27,7 +27,7 @@ class PurchaseRequest extends NestpayRequest
     {
         /** @var Token $token */
         $token = $this->getToken();
-        
+
         $body = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-9"?><CC5Request></CC5Request>');
         $body->addChild('Type', 'Auth');
         $body->addChild('Mode', $this->getMode());
