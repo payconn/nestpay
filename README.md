@@ -24,15 +24,14 @@ processing library for PHP. This package implements common classes required by P
 
 ## Basic Usage
 ```php
-use Payconn\Nestpay;
-
-$gateway = new Nestpay(new Nestpay\Token('YOUR_CLIENT_ID', 'YOUR_USERNAME', 'YOUR_PASS'));
+$token = new \Payconn\Nestpay\Token('YOUR_CLIENT_ID', 'YOUR_USERNAME', 'YOUR_PASS');
+$gateway = new \Payconn\Nestpay($token);
 $response = $gateway->purchase([
     'creditCard' => new \Payconn\Common\CreditCard('Holder Name', '4355084355084358', '26', '12', '000'),
     'amount' => 1,
     'installment' => 1,
     'testMode' => true,
-    'currency' => Nestpay\Currency::TRY,
+    'currency' => \Payconn\Nestpay\Currency::TRY,
 ]);
 ```
 
