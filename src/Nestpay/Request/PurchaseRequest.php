@@ -4,6 +4,7 @@ namespace Payconn\Nestpay\Request;
 
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Response\PurchaseResponse;
+use Payconn\Nestpay\Token;
 
 class PurchaseRequest extends NestpayRequest
 {
@@ -24,13 +25,16 @@ class PurchaseRequest extends NestpayRequest
 
     public function send(): ResponseInterface
     {
+        /** @var Token $token */
+        $token = $this->getToken();
+        
         $body = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-9"?><CC5Request></CC5Request>');
         $body->addChild('Type', 'Auth');
         $body->addChild('Mode', $this->getMode());
         $body->addChild('Currency', $this->getCurrency());
-        $body->addChild('Name', $this->getToken()->getUsername());
-        $body->addChild('Password', $this->getToken()->getPassword());
-        $body->addChild('ClientId', $this->getToken()->getClientId());
+        $body->addChild('Name', $token->getUsername());
+        $body->addChild('Password', $token->getPassword());
+        $body->addChild('ClientId', $token->getClientId());
         $body->addChild('IPAddress', (string) $this->getIpAddress());
         $body->addChild('Total', (float) $this->getAmount());
         $body->addChild('Taksit', (int) $this->getInstallment());
