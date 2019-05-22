@@ -5,7 +5,7 @@ namespace Payconn\Nestpay\Request;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Response\PurchaseResponse;
 
-class PurchaseNestpayRequest extends NestpayRequest
+class PurchaseRequest extends NestpayRequest
 {
     protected $postData = '<?xml version="1.0" encoding="ISO-8859-9"?>
         <CC5Request>
