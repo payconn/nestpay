@@ -2,11 +2,10 @@
 
 namespace Payconn\Nestpay\Request;
 
-use Payconn\Common\AbstractRequest;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Response\PurchaseResponse;
 
-class PurchaseRequest extends AbstractRequest
+class PurchaseRequest extends Request
 {
     protected $postData = '<?xml version="1.0" encoding="ISO-8859-9"?>
         <CC5Request>
@@ -67,11 +66,6 @@ class PurchaseRequest extends AbstractRequest
         return $this->parameters->get('currency');
     }
 
-    public function getMode(): string
-    {
-        return $this->isTestMode() ? 'T' : 'P';
-    }
-
     public function send(): ResponseInterface
     {
         $body = @simplexml_load_string($this->postData);
@@ -89,7 +83,7 @@ class PurchaseRequest extends AbstractRequest
             $body->Expires = $creditCard->getExpireMonth().'/'.$creditCard->getExpireYear();
             $body->Cvv2Val = $creditCard->getCvv();
         }
-        $response = $this->getHttpClient()->request('POST', $this->isTestMode() ? 'https://entegrasyon.asseco-see.com.tr/fim/api' : 'https://www.sanalakpos.com/fim/api', [
+        $response = $this->getHttpClient()->request('POST', $this->getBaseUrl(), [
             'body' => $body->asXML(),
         ]);
 
