@@ -4,6 +4,7 @@ namespace Payconn;
 
 use Payconn\Common\AbstractGateway;
 use Payconn\Common\ResponseInterface;
+use Payconn\Nestpay\Request\PurchaseRequest;
 
 class Nestpay extends AbstractGateway
 {
@@ -19,7 +20,7 @@ class Nestpay extends AbstractGateway
 
     public function purchase(array $parameters): ResponseInterface
     {
-        // TODO: Implement purchase() method.
+        return ($this->createRequest(PurchaseRequest::class, $parameters))->send();
     }
 
     public function purchaseComplete(array $parameters): ResponseInterface
