@@ -31,9 +31,9 @@ class PurchaseRequest extends NestpayRequest
         $body->addChild('Name', $this->getToken()->getUsername());
         $body->addChild('Password', $this->getToken()->getPassword());
         $body->addChild('ClientId', $this->getToken()->getClientId());
-        $body->addChild('IPAddress', (string)$this->getIpAddress());
-        $body->addChild('Total', (float)$this->getAmount());
-        $body->addChild('Taksit', (int)$this->getInstallment());
+        $body->addChild('IPAddress', (string) $this->getIpAddress());
+        $body->addChild('Total', (float) $this->getAmount());
+        $body->addChild('Taksit', (int) $this->getInstallment());
 
         if ($creditCard = $this->getCreditCard()) {
             $body->addChild('Number', $creditCard->getNumber());
