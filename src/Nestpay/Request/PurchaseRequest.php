@@ -26,14 +26,14 @@ class PurchaseRequest extends NestpayRequest
     {
         $body = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-9"?><CC5Request></CC5Request>');
         $body->addChild('Type', 'Auth');
+        $body->addChild('Mode', $this->getMode());
+        $body->addChild('Currency', $this->getCurrency());
         $body->addChild('Name', $this->getToken()->getUsername());
         $body->addChild('Password', $this->getToken()->getPassword());
         $body->addChild('ClientId', $this->getToken()->getClientId());
-        $body->addChild('IPAddress', $this->getIpAddress());
-        $body->addChild('Mode', $this->getMode());
-        $body->addChild('Total', $this->getAmount());
-        $body->addChild('Taksit', $this->getInstallment());
-        $body->addChild('Currency', $this->getCurrency());
+        $body->addChild('IPAddress', (string)$this->getIpAddress());
+        $body->addChild('Total', (float)$this->getAmount());
+        $body->addChild('Taksit', (int)$this->getInstallment());
 
         if ($creditCard = $this->getCreditCard()) {
             $body->addChild('Number', $creditCard->getNumber());
