@@ -5,6 +5,7 @@ namespace Payconn;
 use Payconn\Common\AbstractGateway;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Request\PurchaseRequest;
+use Payconn\Nestpay\Request\RefundRequest;
 use Payconn\Nestpay\Request\VoidRequest;
 
 class Nestpay extends AbstractGateway
@@ -36,6 +37,6 @@ class Nestpay extends AbstractGateway
 
     public function refund(array $parameters): ResponseInterface
     {
-        // TODO: Implement refund() method.
+        return ($this->createRequest(RefundRequest::class, $parameters))->send();
     }
 }
