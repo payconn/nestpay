@@ -37,7 +37,7 @@ class AuthorizeResponse extends AbstractResponse
     public function redirect(): void
     {
         $form = (Forms::createFormFactory())->createBuilder(FormType::class, null, [
-            'action' => '/search',
+            'action' => $this->getParameters()->get('endpoint'),
             'method' => 'POST',
         ])
         ->add('rnd', HiddenType::class)

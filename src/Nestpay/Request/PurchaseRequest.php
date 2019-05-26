@@ -39,16 +39,13 @@ class PurchaseRequest extends NestpayRequest
         $body->addChild('IPAddress', (string) $this->getIpAddress());
         $body->addChild('Total', (string) $this->getAmount());
         $body->addChild('Taksit', (string) $this->getInstallment());
-
-        if ($creditCard = $this->getCreditCard()) {
-            $body->addChild('Number', $creditCard->getNumber());
-            $body->addChild('Expires', $creditCard->getExpireMonth().'/'.$creditCard->getExpireYear());
-            $body->addChild('Cvv2Val', $creditCard->getCvv());
-        }
+        $body->addChild('Number', $this->getCreditCard()->getNumber());
+        $body->addChild('Expires', $this->getCreditCard()->getExpireMonth().'/'.$this->getCreditCard()->getExpireYear());
+        $body->addChild('Cvv2Val', $this->getCreditCard()->getCvv());
 
         /** @var HttpClient $httpClient */
         $httpClient = $this->getHttpClient();
-        $response = $httpClient->request('POST', $this->getBaseUrl(), [
+        $response = $httpClient->request('POST', $this->getEndpoint(), [
             'body' => $body->asXML(),
         ]);
 

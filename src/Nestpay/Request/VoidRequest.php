@@ -28,7 +28,7 @@ class VoidRequest extends NestpayRequest
 
         /** @var HttpClient $httpClient */
         $httpClient = $this->getHttpClient();
-        $response = $httpClient->request('POST', $this->getBaseUrl(), [
+        $response = $httpClient->request('POST', $this->getEndpoint(), [
             'body' => $body->asXML(),
         ]);
 

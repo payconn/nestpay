@@ -30,14 +30,14 @@ class PurchaseResponse extends AbstractResponse
         return $this->getParameters()->all();
     }
 
-    public function isRedirect(): bool
+    public function isRedirection(): bool
     {
         return false;
     }
 
-    public function getRedirectForm(): string
+    public function redirect(): void
     {
-        return '';
+
     }
 
     public function getOrderId(): string
