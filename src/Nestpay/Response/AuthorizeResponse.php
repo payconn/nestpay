@@ -56,6 +56,6 @@ class AuthorizeResponse extends AbstractResponse
         ->add('failUrl', HiddenType::class)
         ->getForm();
 
-        $form->submit($this->getParameters());
+        $form->submit($this->getParameters()->all());
     }
 }
