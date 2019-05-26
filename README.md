@@ -10,6 +10,10 @@
 [Payconn](https://payconn.org) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements common classes required by Payconn.
 
+## Installation
+
+    composer require payconn/nestpay:~1.0
+
 ## Supported card families
 * Axess
 * Bonus
@@ -26,8 +30,9 @@ processing library for PHP. This package implements common classes required by P
 ```php
 $token = new \Payconn\Nestpay\Token('YOUR_CLIENT_ID', 'YOUR_USERNAME', 'YOUR_PASS');
 $gateway = new \Payconn\Nestpay($token);
+$creditCard = new \Payconn\Common\CreditCard('Holder Name', '4355084355084358', '26', '12', '000');
 $response = $gateway->purchase([
-    'creditCard' => new \Payconn\Common\CreditCard('Holder Name', '4355084355084358', '26', '12', '000'),
+    'creditCard' => $creditCard,
     'amount' => 1,
     'installment' => 1,
     'testMode' => true,
