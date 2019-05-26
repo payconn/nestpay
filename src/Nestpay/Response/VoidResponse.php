@@ -37,6 +37,5 @@ class VoidResponse extends AbstractResponse
 
     public function redirect(): void
     {
-
     }
 }

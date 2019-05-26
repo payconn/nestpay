@@ -37,7 +37,5 @@ class RefundResponse extends AbstractResponse
 
     public function redirect(): void
     {
-
     }
-
 }
