@@ -1,13 +1,10 @@
 # Nestpay
 
-**Core components for the Payconn PHP payment processing library**
+**Nestpay (Axess, Bonus, Cardfinans, Maximum, Paraf, World) gateway for Payconn payment processing library**
 
 [![Build Status](https://travis-ci.com/payconn/nestpay.svg?branch=master)](https://travis-ci.com/payconn/nestpay)
-[![GitHub forks](https://img.shields.io/github/forks/payconn/nestpay.svg?style=plastic)](https://github.com/payconn/nestpay/network)
-[![GitHub stars](https://img.shields.io/github/stars/payconn/nestpay.svg)](https://github.com/payconn/nestpay/stargazers)
-[![GitHub license](https://img.shields.io/github/license/payconn/nestpay.svg)](https://github.com/payconn/nestpay)
 
-[Payconn](https://payconn.org) is a framework agnostic, multi-gateway payment
+[Payconn](https://github.com/payconn/common) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements common classes required by Payconn.
 
 ## Installation
@@ -24,7 +21,10 @@ processing library for PHP. This package implements common classes required by P
 
 ## Supported methods
 * purchase
+* authorize
+* purchaseComplete
 * void
+* refund
 
 ## Basic Usage
 ```php
@@ -37,6 +37,7 @@ $response = $gateway->purchase([
     'installment' => 1,
     'testMode' => true,
     'currency' => \Payconn\Nestpay\Currency::TRY,
+    'endpoint' => (new \Payconn\Nestpay\Endpoint\Axess(true))->getBaseUrl(),
 ]);
 ```
 
