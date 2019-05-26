@@ -49,7 +49,7 @@ class PurchaseCompleteRequest extends NestpayRequest
         return $this->parameters->get('clientIp');
     }
 
-    public function getInstallment(): string 
+    public function getInstallment(): string
     {
         return $this->parameters->get('installment');
     }
