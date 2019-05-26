@@ -39,6 +39,15 @@ class AuthorizeRequest extends AbstractRequest
         return $this->parameters->get('cardType');
     }
 
+    public function getBaseUrl(): string
+    {
+        if ($this->isTestMode()) {
+            return 'https://entegrasyon.asseco-see.com.tr/fim/est3Dgate';
+        }
+
+        return 'https://www.sanalakpos.com/fim/api';
+    }
+
     public function send(): ResponseInterface
     {
         /** @var Token $token */
@@ -62,6 +71,7 @@ class AuthorizeRequest extends AbstractRequest
             'amount' => $this->getAmount(),
             'okUrl' => $this->getSuccessfulUrl(),
             'failUrl' => $this->getFailureUrl(),
+            'baseUrl' => $this->getBaseUrl(),
         ]);
     }
 }
