@@ -35,7 +35,8 @@ class VoidResponse extends AbstractResponse
         return false;
     }
 
-    public function redirect(): void
+    public function getRedirectForm(): string
     {
+        return '';
     }
 }

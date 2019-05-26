@@ -10,8 +10,9 @@ $response = $gateway->authorize([
     'amount' => 1,
     'testMode' => true,
     'currency' => \Payconn\Nestpay\Currency::TRY,
-    'successfulUrl' => '',
-    'failureUrl' => '',
+    'successfulUrl' => 'http://127.0.0.1:8000/successful',
+    'failureUrl' => 'http://127.0.0.1:8000/failure',
+    'endpoint' => (new \Payconn\Nestpay\Endpoint\Axess(true))->getBaseSecureUrl(),
 ]);
 print_r([
     'isSuccessful' => $response->isSuccessful(),
@@ -19,5 +20,5 @@ print_r([
     'code' => $response->getResponseCode(),
 ]);
 if ($response->isRedirection()) {
-    $response->redirect();
+    echo $response->getRedirectForm();
 }

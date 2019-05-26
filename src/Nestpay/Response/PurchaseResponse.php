@@ -35,8 +35,9 @@ class PurchaseResponse extends AbstractResponse
         return false;
     }
 
-    public function redirect(): void
+    public function getRedirectForm(): string
     {
+        return '';
     }
 
     public function getOrderId(): string
