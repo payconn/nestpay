@@ -3,6 +3,7 @@
 namespace Payconn\Nestpay\Request;
 
 use Payconn\Common\AbstractRequest;
+use Payconn\Common\HttpClient;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Response\AuthorizeResponse;
 use Payconn\Nestpay\Token;
@@ -47,22 +48,31 @@ class AuthorizeRequest extends AbstractRequest
         $rnd = microtime();
         $hash = base64_encode(pack('H*', sha1($token->getClientId().''.$this->getAmount().$this->getSuccessfulUrl().$this->getFailureUrl().$rnd.$token->getStoreKey())));
 
+        /** @var HttpClient $httpClient */
+        $httpClient = $this->getHttpClient();
+        $response = $httpClient->request('POST', $this->getEndpoint(), [
+            'form_params' => [
+                'rnd' => $rnd,
+                'hash' => $hash,
+                'storetype' => '3d',
+                'lang' => 'tr',
+                'oid' => '',
+                'pan' => $this->getCreditCard()->getNumber(),
+                'cv2' => $this->getCreditCard()->getCvv(),
+                'Ecom_Payment_Card_ExpDate_Year' => $this->getCreditCard()->getExpireYear(),
+                'Ecom_Payment_Card_ExpDate_Month' => $this->getCreditCard()->getExpireMonth(),
+                'cardType' => $this->getCreditCard(),
+                'clientid' => $token->getClientId(),
+                'amount' => $this->getAmount(),
+                'okUrl' => $this->getSuccessfulUrl(),
+                'failUrl' => $this->getFailureUrl(),
+                'baseUrl' => $this->getEndpoint(),
+                'Currency' => $this->getCurrency(),
+            ],
+        ]);
+
         return new AuthorizeResponse([
-            'rnd' => $rnd,
-            'hash' => $hash,
-            'storetype' => '3d',
-            'lang' => 'tr',
-            'oid' => '',
-            'pan' => $this->getCreditCard()->getNumber(),
-            'cv2' => $this->getCreditCard()->getCvv(),
-            'Ecom_Payment_Card_ExpDate_Year' => $this->getCreditCard()->getExpireYear(),
-            'Ecom_Payment_Card_ExpDate_Month' => $this->getCreditCard()->getExpireMonth(),
-            'cardType' => $this->getCreditCard(),
-            'clientid' => $token->getClientId(),
-            'amount' => $this->getAmount(),
-            'okUrl' => $this->getSuccessfulUrl(),
-            'failUrl' => $this->getFailureUrl(),
-            'baseUrl' => $this->getEndpoint(),
+            'content' => $response->getBody()->getContents(),
         ]);
     }
 }
