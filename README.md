@@ -9,7 +9,7 @@ processing library for PHP. This package implements common classes required by P
 
 ## Installation
 
-    composer require payconn/nestpay:~1.0
+    composer require payconn/nestpay:~1.1.4
 
 ## Supported card families
 * Axess
@@ -23,22 +23,20 @@ processing library for PHP. This package implements common classes required by P
 * purchase
 * authorize
 * purchaseComplete
-* void
 * refund
 
 ## Basic Usage
 ```php
-$token = new \Payconn\Nestpay\Token('YOUR_CLIENT_ID', 'YOUR_USERNAME', 'YOUR_PASS');
-$gateway = new \Payconn\Nestpay($token);
-$creditCard = new \Payconn\Common\CreditCard('Holder Name', '4355084355084358', '26', '12', '000');
-$response = $gateway->purchase([
-    'creditCard' => $creditCard,
-    'amount' => 1,
-    'installment' => 1,
-    'testMode' => true,
-    'currency' => \Payconn\Nestpay\Currency::TRY,
-    'endpoint' => (new \Payconn\Nestpay\Endpoint\Axess(true))->getBaseUrl(),
-]);
+$token = new \Payconn\Nestpay\Token('CLIENT_ID', 'USERNAME, 'PASS');
+$gateway = new \Payconn\Axess($token);
+$creditCard = new \Payconn\Common\CreditCard('4355084355084358', '26', '12', '000');
+$purchase = (new \Payconn\Nestpay\Model\Purchase($token))
+    ->setInstallment(1)
+    ->setAmount(1)
+    ->setCurrency(\Payconn\Nestpay\Currency::TRY)
+    ->setCreditCard($creditCard)
+    ->setTestMode(true);
+$response = $gateway->purchase($purchase);
 ```
 
 ## Change log
