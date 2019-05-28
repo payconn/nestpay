@@ -27,7 +27,7 @@ processing library for PHP. This package implements common classes required by P
 
 ## Basic Usage
 ```php
-$token = new \Payconn\Nestpay\Token('CLIENT_ID', 'USERNAME, 'PASS');
+$token = new \Payconn\Nestpay\Token('CLIENT_ID', 'USERNAME', 'PASS');
 $gateway = new \Payconn\Axess($token);
 $creditCard = new \Payconn\Common\CreditCard('4355084355084358', '26', '12', '000');
 $purchase = (new \Payconn\Nestpay\Model\Purchase($token))
