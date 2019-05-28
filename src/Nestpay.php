@@ -3,42 +3,50 @@
 namespace Payconn;
 
 use Payconn\Common\AbstractGateway;
+use Payconn\Common\ModelInterface;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Request\AuthorizeRequest;
 use Payconn\Nestpay\Request\PurchaseCompleteRequest;
 use Payconn\Nestpay\Request\PurchaseRequest;
 use Payconn\Nestpay\Request\RefundRequest;
-use Payconn\Nestpay\Request\VoidRequest;
 
-class Nestpay extends AbstractGateway
+abstract class Nestpay extends AbstractGateway
 {
-    public function authorize(array $parameters): ResponseInterface
+    public function authorize(ModelInterface $model): ResponseInterface
     {
-        return ($this->createRequest(AuthorizeRequest::class, $parameters))->send();
+        $this->overrideBaseUrl($model);
+
+        return ($this->createRequest(AuthorizeRequest::class, $model))->send();
     }
 
-    public function authorizeComplete(array $parameters): ResponseInterface
+    public function purchase(ModelInterface $model): ResponseInterface
+    {
+        $this->overrideBaseUrl($model);
+
+        return ($this->createRequest(PurchaseRequest::class, $model))->send();
+    }
+
+    public function purchaseComplete(ModelInterface $model): ResponseInterface
+    {
+        $this->overrideBaseUrl($model);
+
+        return ($this->createRequest(PurchaseCompleteRequest::class, $model))->send();
+    }
+
+    public function refund(ModelInterface $model): ResponseInterface
+    {
+        $this->overrideBaseUrl($model);
+
+        return ($this->createRequest(RefundRequest::class, $model))->send();
+    }
+
+    public function void(ModelInterface $model): ResponseInterface
     {
         // TODO: Implement authorizeComplete() method.
     }
 
-    public function purchase(array $parameters): ResponseInterface
+    public function authorizeComplete(ModelInterface $model): ResponseInterface
     {
-        return ($this->createRequest(PurchaseRequest::class, $parameters))->send();
-    }
-
-    public function purchaseComplete(array $parameters): ResponseInterface
-    {
-        return ($this->createRequest(PurchaseCompleteRequest::class, $parameters))->send();
-    }
-
-    public function void(array $parameters): ResponseInterface
-    {
-        return ($this->createRequest(VoidRequest::class, $parameters))->send();
-    }
-
-    public function refund(array $parameters): ResponseInterface
-    {
-        return ($this->createRequest(RefundRequest::class, $parameters))->send();
+        // TODO: Implement authorizeComplete() method.
     }
 }

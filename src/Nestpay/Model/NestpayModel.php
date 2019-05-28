@@ -1,10 +1,10 @@
 <?php
 
-namespace Payconn\Nestpay\Request;
+namespace Payconn\Nestpay\Model;
 
-use Payconn\Common\AbstractRequest;
+use Payconn\Common\AbstractModel;
 
-abstract class NestpayRequest extends AbstractRequest
+class NestpayModel extends AbstractModel
 {
     public function getMode(): string
     {
