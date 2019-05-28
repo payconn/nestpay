@@ -29,7 +29,7 @@ class PurchaseCompleteRequest extends AbstractRequest
         $body->addChild('Currency', $model->getCurrency());
         $body->addChild('OrderId', $model->getOid());
         $body->addChild('Number', $model->getMd());
-        $body->addChild('Taksit', (string)$model->getInstallment());
+        $body->addChild('Taksit', (string) $model->getInstallment());
         $body->addChild('PayerTxnId', $model->getXid());
         $body->addChild('PayerSecurityLevel', $model->getEci());
         $body->addChild('PayerAuthenticationCode', $model->getCavv());
