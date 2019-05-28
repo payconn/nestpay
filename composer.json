@@ -23,13 +23,21 @@
     "php": ">=7.1",
     "guzzlehttp/guzzle": "~6.0",
     "symfony/http-foundation": "^2.1||^3||^4",
-    "payconn/common": "~1.2.4"
+    "payconn/common": "~1.2.8"
   },
   "autoload": {
     "psr-4": {
       "Payconn\\Nestpay\\": "src/Nestpay"
     },
-    "classmap": ["src/Nestpay.php"]
+    "classmap": [
+      "src/Nestpay.php",
+      "src/Axess.php",
+      "src/Bonus.php",
+      "src/Cardfinans.php",
+      "src/Maximum.php",
+      "src/Paraf.php",
+      "src/World.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
