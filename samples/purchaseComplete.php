@@ -3,7 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 $token = new \Payconn\Nestpay\Token('100100000', 'AKTESTAPI', 'AKBANK01', '123456');
-$gateway = new \Payconn\Axess($token);
+$gateway = new \Payconn\AkBank($token);
 $purchaseComplete = (new \Payconn\Nestpay\Model\PurchaseComplete($token))
     ->setXid('ifmTW9moVmSL1v4v7CtufhWCcAY=')
     ->setEci('05')
