@@ -1,6 +1,6 @@
 # Nestpay
 
-**Nestpay (Axess, Bonus, Cardfinans, Maximum, Paraf, World) gateway for Payconn payment processing library**
+**Nestpay (A Bank, Ak Bank, Anadolu Bank, Finans Bank, Halk Bank, ING Bank, İş Bank, Şeker Bank, Türk Ekonomi Bank (TEB), Ziraat Bank) gateway for Payconn payment processing library**
 
 [![Build Status](https://travis-ci.com/payconn/nestpay.svg?branch=master)](https://travis-ci.com/payconn/nestpay)
 
@@ -11,24 +11,16 @@ processing library for PHP. This package implements common classes required by P
 
     composer require payconn/nestpay:~1.1.4
 
-## Supported card families
-* Axess
-* Bonus
-* Cardfinans
-* Maximum
-* Paraf
-* World
-
 ## Supported methods
 * purchase
-* authorize
+* authorize (3D)
 * purchaseComplete
 * refund
 
 ## Basic Usage
 ```php
 $token = new \Payconn\Nestpay\Token('CLIENT_ID', 'USERNAME', 'PASS');
-$gateway = new \Payconn\Axess($token);
+$gateway = new \Payconn\AkBank($token);
 $creditCard = new \Payconn\Common\CreditCard('4355084355084358', '26', '12', '000');
 $purchase = (new \Payconn\Nestpay\Model\Purchase($token))
     ->setInstallment(1)

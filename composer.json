@@ -4,12 +4,16 @@
   "keywords": [
     "nestpay",
     "est",
-    "axess",
-    "bonus",
-    "cardfinans",
-    "maximum",
-    "paraf",
-    "world"
+    "abank",
+    "anadolu",
+    "finans",
+    "halk",
+    "ing",
+    "isbank",
+    "seker",
+    "turkekonomi",
+    "teb",
+    "ziraat"
   ],
   "license": "MIT",
   "authors": [
@@ -23,7 +27,7 @@
     "php": ">=7.1",
     "guzzlehttp/guzzle": "~6.0",
     "symfony/http-foundation": "^2.1||^3||^4",
-    "payconn/common": "~1.2.8"
+    "payconn/common": "~1.2.9"
   },
   "autoload": {
     "psr-4": {
@@ -31,12 +35,16 @@
     },
     "classmap": [
       "src/Nestpay.php",
-      "src/Axess.php",
-      "src/Bonus.php",
-      "src/Cardfinans.php",
-      "src/Maximum.php",
-      "src/Paraf.php",
-      "src/World.php"
+      "src/AkBank.php",
+      "src/ABank.php",
+      "src/AnadoluBank.php",
+      "src/FinansBank.php",
+      "src/HalkBank.php",
+      "src/IngBank.php",
+      "src/IsBank.php",
+      "src/SekerBank.php",
+      "src/TurkEkonomiBank.php",
+      "src/ZiraatBank.php"
     ]
   },
   "autoload-dev": {

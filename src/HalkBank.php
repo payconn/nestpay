@@ -7,7 +7,7 @@ use Payconn\Nestpay\Model\Purchase;
 use Payconn\Nestpay\Model\PurchaseComplete;
 use Payconn\Nestpay\Model\Refund;
 
-class Axess extends Nestpay
+class HalkBank extends Nestpay
 {
     public function overrideBaseUrl(ModelInterface $model): void
     {
@@ -17,13 +17,13 @@ class Axess extends Nestpay
             if ($model->isTestMode()) {
                 $model->setBaseUrl('https://entegrasyon.asseco-see.com.tr/fim/api');
             } else {
-                $model->setBaseUrl('https://www.sanalakpos.com/fim/api');
+                $model->setBaseUrl('https://sanalpos.halkbank.com.tr/fim/api');
             }
         } else {
             if ($model->isTestMode()) {
                 $model->setBaseUrl('https://entegrasyon.asseco-see.com.tr/fim/est3Dgate');
             } else {
-                $model->setBaseUrl('https://www.sanalakpos.com/fim/est3Dgate');
+                $model->setBaseUrl('https://sanalpos.halkbank.com.tr/fim/est3Dgate');
             }
         }
     }

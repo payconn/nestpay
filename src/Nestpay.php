@@ -40,11 +40,6 @@ abstract class Nestpay extends AbstractGateway
         return ($this->createRequest(RefundRequest::class, $model))->send();
     }
 
-    public function void(ModelInterface $model): ResponseInterface
-    {
-        // TODO: Implement authorizeComplete() method.
-    }
-
     public function authorizeComplete(ModelInterface $model): ResponseInterface
     {
         // TODO: Implement authorizeComplete() method.
