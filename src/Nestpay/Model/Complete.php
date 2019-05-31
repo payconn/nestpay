@@ -4,11 +4,15 @@ namespace Payconn\Nestpay\Model;
 
 use Payconn\Common\AbstractModel;
 use Payconn\Common\Model\CompleteInterface;
+use Payconn\Common\Traits\Amount;
+use Payconn\Common\Traits\Currency;
 use Payconn\Common\Traits\Installment;
 
 class Complete extends AbstractModel implements CompleteInterface
 {
+    use Amount;
     use Installment;
+    use Currency;
 
     private $xid;
     private $eci;
