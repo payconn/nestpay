@@ -31,7 +31,7 @@ class AuthorizeResponse extends AbstractResponse
         return true;
     }
 
-    public function getRedirectForm(): string
+    public function getRedirectForm(): ?string
     {
         return $this->getParameters()->get('content');
     }

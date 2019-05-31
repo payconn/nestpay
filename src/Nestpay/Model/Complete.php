@@ -2,19 +2,19 @@
 
 namespace Payconn\Nestpay\Model;
 
-class PurchaseComplete extends NestpayModel
+use Payconn\Common\AbstractModel;
+use Payconn\Common\Model\CompleteInterface;
+use Payconn\Common\Traits\Installment;
+
+class Complete extends AbstractModel implements CompleteInterface
 {
+    use Installment;
+
     private $xid;
-
     private $eci;
-
     private $cavv;
-
     private $md;
-
     private $oid;
-
-    private $installment;
 
     public function getXid(): string
     {
@@ -72,18 +72,6 @@ class PurchaseComplete extends NestpayModel
     public function setOid(string $oid): self
     {
         $this->oid = $oid;
-
-        return $this;
-    }
-
-    public function getInstallment(): int
-    {
-        return $this->installment;
-    }
-
-    public function setInstallment(int $installment): self
-    {
-        $this->installment = $installment;
 
         return $this;
     }

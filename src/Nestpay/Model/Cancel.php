@@ -3,10 +3,10 @@
 namespace Payconn\Nestpay\Model;
 
 use Payconn\Common\AbstractModel;
-use Payconn\Common\Model\RefundInterface;
+use Payconn\Common\Model\CancelInterface;
 use Payconn\Common\Traits\OrderId;
 
-class Refund extends AbstractModel implements RefundInterface
+class Cancel extends AbstractModel implements CancelInterface
 {
     use OrderId;
 }

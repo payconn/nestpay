@@ -5,15 +5,15 @@ namespace Payconn\Nestpay\Request;
 use Payconn\Common\AbstractRequest;
 use Payconn\Common\HttpClient;
 use Payconn\Common\ResponseInterface;
-use Payconn\Nestpay\Model\PurchaseComplete;
-use Payconn\Nestpay\Response\PurchaseCompleteResponse;
+use Payconn\Nestpay\Model\Complete;
+use Payconn\Nestpay\Response\CompleteResponse;
 use Payconn\Nestpay\Token;
 
-class PurchaseCompleteRequest extends AbstractRequest
+class CompleteRequest extends AbstractRequest
 {
     public function send(): ResponseInterface
     {
-        /** @var PurchaseComplete $model */
+        /** @var Complete $model */
         $model = $this->getModel();
         /** @var Token $token */
         $token = $model->getToken();
@@ -40,6 +40,6 @@ class PurchaseCompleteRequest extends AbstractRequest
             'body' => $body->asXML(),
         ]);
 
-        return new PurchaseCompleteResponse($model, (array) @simplexml_load_string($response->getBody()->getContents()));
+        return new CompleteResponse($model, (array) @simplexml_load_string($response->getBody()->getContents()));
     }
 }

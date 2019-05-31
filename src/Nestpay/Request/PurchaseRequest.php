@@ -16,7 +16,7 @@ class PurchaseRequest extends AbstractRequest
         /** @var Purchase $model */
         $model = $this->getModel();
         /** @var Token $token */
-        $token = $model->getToken();
+        $token = $this->getToken();
 
         $body = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-9"?><CC5Request></CC5Request>');
         $body->addChild('Type', 'Auth');

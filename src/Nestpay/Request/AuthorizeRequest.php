@@ -16,7 +16,7 @@ class AuthorizeRequest extends AbstractRequest
         /** @var Authorize $model */
         $model = $this->getModel();
         /** @var Token $token */
-        $token = $model->getToken();
+        $token = $this->getToken();
 
         $rnd = microtime();
         $hash = base64_encode(pack('H*', sha1($token->getClientId().''.$model->getAmount().$model->getSuccessfulUrl().$model->getFailureUrl().$rnd.$token->getStoreKey())));

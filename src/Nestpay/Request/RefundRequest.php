@@ -16,7 +16,7 @@ class RefundRequest extends AbstractRequest
         /** @var Refund $model */
         $model = $this->getModel();
         /** @var Token $token */
-        $token = $model->getToken();
+        $token = $this->getToken();
 
         $body = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-9"?><CC5Request></CC5Request>');
         $body->addChild('Type', 'Credit');
@@ -24,9 +24,7 @@ class RefundRequest extends AbstractRequest
         $body->addChild('Password', $token->getPassword());
         $body->addChild('ClientId', $token->getClientId());
         $body->addChild('OrderId', $model->getOrderId());
-        if ($amount = $model->getAmount()) {
-            $body->addChild('Total', (string) $model->getAmount());
-        }
+        $body->addChild('Total', (string) $model->getAmount());
 
         /** @var HttpClient $httpClient */
         $httpClient = $this->getHttpClient();
