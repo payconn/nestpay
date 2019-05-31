@@ -20,7 +20,7 @@ class PurchaseRequest extends AbstractRequest
 
         $body = new \SimpleXMLElement('<?xml version="1.0" encoding="ISO-8859-9"?><CC5Request></CC5Request>');
         $body->addChild('Type', 'Auth');
-        $body->addChild('Mode', $model->getMode());
+        $body->addChild('Mode', $model->isTestMode() ? 'T' : 'P');
         $body->addChild('Currency', $model->getCurrency());
         $body->addChild('Name', $token->getUsername());
         $body->addChild('Password', $token->getPassword());

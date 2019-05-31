@@ -10,6 +10,7 @@ use Payconn\Common\Model\PurchaseInterface;
 use Payconn\Common\Model\RefundInterface;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Request\AuthorizeRequest;
+use Payconn\Nestpay\Request\CancelRequest;
 use Payconn\Nestpay\Request\CompleteRequest;
 use Payconn\Nestpay\Request\PurchaseRequest;
 use Payconn\Nestpay\Request\RefundRequest;
@@ -36,7 +37,8 @@ abstract class Nestpay extends AbstractGateway
         return $this->createRequest(RefundRequest::class, $refund);
     }
 
-    public function cancel(CancelInterface $model): ResponseInterface
+    public function cancel(CancelInterface $cancel): ResponseInterface
     {
+        return $this->createRequest(CancelRequest::class, $cancel);
     }
 }
