@@ -19,16 +19,21 @@ processing library for PHP. This package implements common classes required by P
 
 ## Basic Usage
 ```php
-$token = new \Payconn\Nestpay\Token('CLIENT_ID', 'USERNAME', 'PASS');
-$gateway = new \Payconn\AkBank($token);
-$creditCard = new \Payconn\Common\CreditCard('4355084355084358', '26', '12', '000');
-$purchase = (new \Payconn\Nestpay\Model\Purchase($token))
-    ->setInstallment(1)
-    ->setAmount(1)
-    ->setCurrency(\Payconn\Nestpay\Currency::TRY)
-    ->setCreditCard($creditCard)
-    ->setTestMode(true);
-$response = $gateway->purchase($purchase);
+use Payconn\Common\CreditCard;
+use Payconn\Nestpay\Token;
+use Payconn\Nestpay\Model\Purchase;
+use Payconn\Nestpay\Currency;
+use Payconn\AkBank;
+
+$token = new Token('CLIENT_ID', 'USERNAME', 'PASS');
+$creditCard = new CreditCard('4355084355084358', '26', '12', '000');
+$purchase = new Purchase();
+$purchase->setAmount(1);
+$purchase->setInstallment(1);
+$purchase->setCurrency(Currency::TRY);
+$purchase->setCreditCard($creditCard);
+$purchase->setTestMode(true);
+$response = (AkBank($token))->purchase($purchase);
 ```
 
 ## Change log
