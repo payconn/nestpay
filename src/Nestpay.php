@@ -3,45 +3,42 @@
 namespace Payconn;
 
 use Payconn\Common\AbstractGateway;
-use Payconn\Common\ModelInterface;
+use Payconn\Common\Model\AuthorizeInterface;
+use Payconn\Common\Model\CancelInterface;
+use Payconn\Common\Model\CompleteInterface;
+use Payconn\Common\Model\PurchaseInterface;
+use Payconn\Common\Model\RefundInterface;
 use Payconn\Common\ResponseInterface;
 use Payconn\Nestpay\Request\AuthorizeRequest;
-use Payconn\Nestpay\Request\PurchaseCompleteRequest;
+use Payconn\Nestpay\Request\CancelRequest;
+use Payconn\Nestpay\Request\CompleteRequest;
 use Payconn\Nestpay\Request\PurchaseRequest;
 use Payconn\Nestpay\Request\RefundRequest;
 
 abstract class Nestpay extends AbstractGateway
 {
-    public function authorize(ModelInterface $model): ResponseInterface
+    public function purchase(PurchaseInterface $purchase): ResponseInterface
     {
-        $this->overrideBaseUrl($model);
-
-        return ($this->createRequest(AuthorizeRequest::class, $model))->send();
+        return $this->createRequest(PurchaseRequest::class, $purchase);
     }
 
-    public function purchase(ModelInterface $model): ResponseInterface
+    public function authorize(AuthorizeInterface $authorize): ResponseInterface
     {
-        $this->overrideBaseUrl($model);
-
-        return ($this->createRequest(PurchaseRequest::class, $model))->send();
+        return $this->createRequest(AuthorizeRequest::class, $authorize);
     }
 
-    public function purchaseComplete(ModelInterface $model): ResponseInterface
+    public function complete(CompleteInterface $complete): ResponseInterface
     {
-        $this->overrideBaseUrl($model);
-
-        return ($this->createRequest(PurchaseCompleteRequest::class, $model))->send();
+        return $this->createRequest(CompleteRequest::class, $complete);
     }
 
-    public function refund(ModelInterface $model): ResponseInterface
+    public function refund(RefundInterface $refund): ResponseInterface
     {
-        $this->overrideBaseUrl($model);
-
-        return ($this->createRequest(RefundRequest::class, $model))->send();
+        return $this->createRequest(RefundRequest::class, $refund);
     }
 
-    public function authorizeComplete(ModelInterface $model): ResponseInterface
+    public function cancel(CancelInterface $cancel): ResponseInterface
     {
-        // TODO: Implement authorizeComplete() method.
+        return $this->createRequest(CancelRequest::class, $cancel);
     }
 }

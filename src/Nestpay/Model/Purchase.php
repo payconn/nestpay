@@ -2,19 +2,17 @@
 
 namespace Payconn\Nestpay\Model;
 
-class Purchase extends NestpayModel
+use Payconn\Common\AbstractModel;
+use Payconn\Common\Model\PurchaseInterface;
+use Payconn\Common\Traits\Amount;
+use Payconn\Common\Traits\CreditCard;
+use Payconn\Common\Traits\Currency;
+use Payconn\Common\Traits\Installment;
+
+class Purchase extends AbstractModel implements PurchaseInterface
 {
-    private $installment;
-
-    public function getInstallment(): int
-    {
-        return $this->installment;
-    }
-
-    public function setInstallment(int $installment): self
-    {
-        $this->installment = $installment;
-
-        return $this;
-    }
+    use CreditCard;
+    use Amount;
+    use Installment;
+    use Currency;
 }

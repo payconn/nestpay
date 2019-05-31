@@ -2,47 +2,19 @@
 
 namespace Payconn\Nestpay\Model;
 
-class Authorize extends NestpayModel
+use Payconn\Common\AbstractModel;
+use Payconn\Common\Model\AuthorizeInterface;
+use Payconn\Common\Traits\Amount;
+use Payconn\Common\Traits\CreditCard;
+use Payconn\Common\Traits\Currency;
+use Payconn\Common\Traits\Installment;
+use Payconn\Common\Traits\ReturnUrl;
+
+class Authorize extends AbstractModel implements AuthorizeInterface
 {
-    private $installment;
-
-    private $successfulUrl;
-
-    private $failureUrl;
-
-    public function getInstallment(): int
-    {
-        return $this->installment;
-    }
-
-    public function setInstallment(int $installment): self
-    {
-        $this->installment = $installment;
-
-        return $this;
-    }
-
-    public function getSuccessfulUrl(): string
-    {
-        return $this->successfulUrl;
-    }
-
-    public function setSuccessfulUrl($successfulUrl): self
-    {
-        $this->successfulUrl = $successfulUrl;
-
-        return $this;
-    }
-
-    public function getFailureUrl(): string
-    {
-        return $this->failureUrl;
-    }
-
-    public function setFailureUrl($failureUrl): self
-    {
-        $this->failureUrl = $failureUrl;
-
-        return $this;
-    }
+    use CreditCard;
+    use Amount;
+    use Installment;
+    use ReturnUrl;
+    use Currency;
 }

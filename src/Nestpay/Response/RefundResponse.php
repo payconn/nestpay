@@ -35,8 +35,8 @@ class RefundResponse extends AbstractResponse
         return false;
     }
 
-    public function getRedirectForm(): string
+    public function getRedirectForm(): ?string
     {
-        return '';
+        return null;
     }
 }

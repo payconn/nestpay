@@ -2,19 +2,13 @@
 
 namespace Payconn\Nestpay\Model;
 
-class Refund extends NestpayModel
+use Payconn\Common\AbstractModel;
+use Payconn\Common\Model\RefundInterface;
+use Payconn\Common\Traits\Amount;
+use Payconn\Common\Traits\OrderId;
+
+class Refund extends AbstractModel implements RefundInterface
 {
-    private $orderId;
-
-    public function getOrderId(): string
-    {
-        return $this->orderId;
-    }
-
-    public function setOrderId(string $orderId): self
-    {
-        $this->orderId = $orderId;
-
-        return $this;
-    }
+    use OrderId;
+    use Amount;
 }

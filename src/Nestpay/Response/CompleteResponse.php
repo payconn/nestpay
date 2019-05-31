@@ -4,7 +4,7 @@ namespace Payconn\Nestpay\Response;
 
 use Payconn\Common\AbstractResponse;
 
-class PurchaseCompleteResponse extends AbstractResponse
+class CompleteResponse extends AbstractResponse
 {
     public function isSuccessful(): bool
     {
@@ -35,9 +35,9 @@ class PurchaseCompleteResponse extends AbstractResponse
         return false;
     }
 
-    public function getRedirectForm(): string
+    public function getRedirectForm(): ?string
     {
-        return '';
+        return null;
     }
 
     public function getOrderId(): string

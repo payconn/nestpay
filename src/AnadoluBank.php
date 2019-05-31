@@ -2,29 +2,14 @@
 
 namespace Payconn;
 
-use Payconn\Common\ModelInterface;
-use Payconn\Nestpay\Model\Purchase;
-use Payconn\Nestpay\Model\PurchaseComplete;
-use Payconn\Nestpay\Model\Refund;
+use Payconn\Common\BaseUrl;
 
 class AnadoluBank extends Nestpay
 {
-    public function overrideBaseUrl(ModelInterface $model): void
+    public function initialize(): void
     {
-        if ($model instanceof Purchase
-        || $model instanceof Refund
-        || $model instanceof PurchaseComplete) {
-            if ($model->isTestMode()) {
-                $model->setBaseUrl('https://entegrasyon.asseco-see.com.tr/fim/api');
-            } else {
-                $model->setBaseUrl('https://anadolusanalpos.est.com.tr/fim/api');
-            }
-        } else {
-            if ($model->isTestMode()) {
-                $model->setBaseUrl('https://entegrasyon.asseco-see.com.tr/fim/est3Dgate');
-            } else {
-                $model->setBaseUrl('https://anadolusanalpos.est.com.tr/fim/est3Dgate');
-            }
-        }
+        $this->setBaseUrl((new BaseUrl())
+            ->setProdUrls('https://anadolusanalpos.est.com.tr/fim/api', 'https://anadolusanalpos.est.com.tr/fim/est3Dgate')
+            ->setTestUrls('https://entegrasyon.asseco-see.com.tr/fim/api', 'https://entegrasyon.asseco-see.com.tr/fim/est3Dgate'));
     }
 }
