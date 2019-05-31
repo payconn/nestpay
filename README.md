@@ -17,14 +17,10 @@ processing library for PHP. This package implements common classes required by P
 * purchaseComplete
 * refund
 
-## Basic Usage
-```php
-use Payconn\Common\CreditCard;
-use Payconn\Nestpay\Token;
-use Payconn\Nestpay\Model\Purchase;
-use Payconn\Nestpay\Currency;
-use Payconn\AkBank;
+## Basic Usages
 
+### Purchase
+```php
 $token = new Token('CLIENT_ID', 'USERNAME', 'PASS');
 $creditCard = new CreditCard('4355084355084358', '26', '12', '000');
 $purchase = new Purchase();
@@ -34,6 +30,56 @@ $purchase->setCurrency(Currency::TRY);
 $purchase->setCreditCard($creditCard);
 $purchase->setTestMode(true);
 $response = (AkBank($token))->purchase($purchase);
+```
+
+### Authorize
+```php
+$token = new Token('100100000', 'AKTESTAPI', 'AKBANK01', '123456');
+$creditCard = new CreditCard('4355084355084358', '26', '12', '000');
+$authorize = new Authorize();
+$authorize->setFailureUrl('http://127.0.0.1:8000/failure');
+$authorize->setSuccessfulUrl('http://127.0.0.1:8000/successful');
+$authorize->setCreditCard($creditCard);
+$authorize->setCurrency(Currency::TRY);
+$authorize->setAmount(1);
+$authorize->setInstallment(1);
+$authorize->setTestMode(true);
+$response = (new AkBank($token))->authorize($authorize);
+```
+
+### Complete
+```php
+$token = new Token('100100000', 'AKTESTAPI', 'AKBANK01', '123456');
+$complete = new Complete();
+$complete->setTestMode(true);
+$complete->setXid('ifmTW9moVmSL1v4v7CtufhWCcAY=');
+$complete->setEci('05');
+$complete->setCavv('AAABBCYHAgAAAAARMAcCAAAAAAA=');
+$complete->setMd('435508:7D4CC6608E4E5BCFD4DCE2C6A4ED113ED7E916D56E54302CD49012778C2652D6:4285:##100100000');
+$complete->setOid('');
+$complete->setCurrency(Currency::TRY);
+$complete->setInstallment(1);
+$complete->setAmount(1);
+$response = (new AkBank($token))->complete($complete);
+```
+
+### Refund
+```php
+$token = new Token('100100000', 'AKTESTAPI', 'AKBANK01');
+$refund = new Refund();
+$refund->setTestMode(true);
+$refund->setOrderId('ORDER-19151V8FE19458');
+$refund->setAmount('1');
+$response = (new AkBank($token))->refund($refund);
+```
+
+### Cancel
+```php
+$token = new Token('100100000', 'AKTESTAPI', 'AKBANK01');
+$cancel = new Cancel();
+$cancel->setOrderId('ORDER-19149WiYJ13338');
+$cancel->setTestMode(true);
+$response = (new AkBank($token))->cancel($cancel);
 ```
 
 ## Change log
