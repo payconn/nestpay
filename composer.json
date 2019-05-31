@@ -49,7 +49,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Payconn\\Tests\\Nestpay\\": "tests/Nestpay"
+      "Payconn\\Nestpay\\Tests\\": "tests/Nestpay"
     }
   },
   "require-dev": {
