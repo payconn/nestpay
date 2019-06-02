@@ -23,6 +23,7 @@ processing library for PHP. This package implements common classes required by P
 use Payconn\Common\CreditCard;
 use Payconn\Nestpay\Token;
 use Payconn\Nestpay\Currency;
+use Payconn\Nestpay\Model\Purchase;
 use Payconn\Akbank;
 
 $token = new Token('CLIENT_ID', 'USERNAME', 'PASS');
