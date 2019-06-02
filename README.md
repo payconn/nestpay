@@ -9,13 +9,14 @@ processing library for PHP. This package implements common classes required by P
 
 ## Installation
 
-    composer require payconn/nestpay:~1.1.5
+    composer require payconn/nestpay:~1.1.6
 
 ## Supported methods
 * purchase
 * authorize (3D)
-* purchaseComplete
+* complete
 * refund
+* cancel
 
 ## Basic Usages
 
