@@ -27,12 +27,12 @@ class CompleteRequest extends AbstractRequest
         $body->addChild('IPAddress', (string) $this->getIpAddress());
         $body->addChild('Total', (string) $model->getAmount());
         $body->addChild('Currency', $model->getCurrency());
-        $body->addChild('OrderId', $model->getOid());
-        $body->addChild('Number', $model->getMd());
+        $body->addChild('OrderId', $model->getReturnParams()->get('oid'));
+        $body->addChild('Number', $model->getReturnParams()->get('md'));
         $body->addChild('Taksit', (string) $model->getInstallment());
-        $body->addChild('PayerTxnId', $model->getXid());
-        $body->addChild('PayerSecurityLevel', $model->getEci());
-        $body->addChild('PayerAuthenticationCode', $model->getCavv());
+        $body->addChild('PayerTxnId', $model->getReturnParams()->get('xid'));
+        $body->addChild('PayerSecurityLevel', $model->getReturnParams()->get('eci'));
+        $body->addChild('PayerAuthenticationCode', $model->getReturnParams()->get('cavv'));
 
         /** @var HttpClient $httpClient */
         $httpClient = $this->getHttpClient();

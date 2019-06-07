@@ -30,11 +30,13 @@ class CompleteTest extends TestCase
         $complete->setAmount(1);
         $complete->setInstallment(1);
         $complete->setCurrency(\Payconn\Nestpay\Currency::TRY);
-        $complete->setXid('XID');
-        $complete->setOid('OID');
-        $complete->setCavv('CAVV');
-        $complete->setEci('ECI');
-        $complete->setMd('MD');
+        $complete->setReturnParams([
+            'xid' => 'XID',
+            'oid' => 'OID',
+            'cavv' => 'CAVV',
+            'eci' => 'ECI',
+            'md' => 'MD',
+        ]);
         $response = (new \Payconn\AkBank($token, $client))->complete($complete);
         $this->assertTrue($response->isSuccessful());
     }
