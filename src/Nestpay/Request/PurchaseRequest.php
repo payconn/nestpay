@@ -29,7 +29,7 @@ class PurchaseRequest extends AbstractRequest
         $body->addChild('Total', (string) $model->getAmount());
         $body->addChild('Taksit', (string) $model->getInstallment());
         $body->addChild('Number', $model->getCreditCard()->getNumber());
-        $body->addChild('Expires', $model->getCreditCard()->getExpireMonth().'/'.$model->getCreditCard()->getExpireYear());
+        $body->addChild('Expires', $model->getCreditCard()->getExpireMonth()->format('m').'/'.$model->getCreditCard()->getExpireYear()->format('y'));
         $body->addChild('Cvv2Val', $model->getCreditCard()->getCvv());
 
         /** @var HttpClient $httpClient */
