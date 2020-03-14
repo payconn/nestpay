@@ -15,9 +15,17 @@ class Complete extends AbstractModel implements CompleteInterface
     use Installment;
     use Currency;
 
+    /**
+     * @var ParameterBag
+     */
     protected $returnParams;
 
-    public function setReturnParams(array $returnParams)
+    public function __construct()
+    {
+        $this->returnParams = new ParameterBag();
+    }
+
+    public function setReturnParams(array $returnParams): void
     {
         $this->returnParams = new ParameterBag($returnParams);
     }
