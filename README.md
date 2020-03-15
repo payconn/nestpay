@@ -1,8 +1,24 @@
-# Payconn: Nestpay (EST)
+<p align="center">
+<a href="https://www.paratika.com.tr/"><img width="200" src="https://www.paratika.com.tr/wp-content/themes/wp-bootstrap-starter/img/paratika-logo.png"></a>
+</p>
 
-**Nestpay (A Bank, Ak Bank, Anadolu Bank, Finans Bank, Halk Bank, ING Bank, İş Bank, Şeker Bank, Türk Ekonomi Bank (TEB), Ziraat Bank) gateway for Payconn payment processing library**
+<h3 align="center">Payconn: Nestpay (EST)</h3>
 
-[![Build Status](https://travis-ci.com/payconn/nestpay.svg?branch=master)](https://travis-ci.com/payconn/nestpay)
+<p align="center">Nestpay (A Bank, Ak Bank, Anadolu Bank, Finans Bank, Halk Bank, ING Bank, İş Bank, Şeker Bank, Türk Ekonomi Bank (TEB), Ziraat Bank) gateway for Payconn payment processing library</p>
+<p align="center">
+  <a href="https://travis-ci.com/payconn/nestpay"><img src="https://travis-ci.com/payconn/nestpay.svg?branch=master" /></a>
+</p>
+<hr>
+
+<p align="center">
+<b><a href="#installation">Installation</a></b>
+|
+<b><a href="#supported-methods">Supported Methods</a></b>
+|
+<b><a href="#basic-usages">Basic Usages</a></b>
+</p>
+<hr>
+<br>
 
 [Payconn](https://github.com/payconn/common) is a framework agnostic, multi-gateway payment
 processing library for PHP. This package implements common classes required by Payconn.
