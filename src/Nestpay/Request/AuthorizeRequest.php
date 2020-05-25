@@ -30,6 +30,7 @@ class AuthorizeRequest extends AbstractRequest
                 'storetype' => '3d',
                 'lang' => 'tr',
                 'oid' => '',
+                'OrderId' => $model->getOrderId(),
                 'pan' => $model->getCreditCard()->getNumber(),
                 'cv2' => $model->getCreditCard()->getCvv(),
                 'Ecom_Payment_Card_ExpDate_Year' => $model->getCreditCard()->getExpireYear(),
