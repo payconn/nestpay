@@ -28,7 +28,7 @@ class AuthorizeTest extends TestCase
         $authorize->setFailureUrl('http://127.0.0.1:8000/failure');
         $authorize->setCreditCard($creditCard);
         $authorize->setAmount(1);
-        $authorize->setInstallment(1);
+        $authorize->generateOrderId();
         $authorize->setCurrency(\Payconn\Nestpay\Currency::TRY);
         $response = (new \Payconn\AkBank($token, $client))->authorize($authorize);
         $this->assertTrue($response->isSuccessful());

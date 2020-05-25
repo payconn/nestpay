@@ -10,7 +10,7 @@ $authorize->setSuccessfulUrl('http://127.0.0.1:8000/successful');
 $authorize->setCreditCard($creditCard);
 $authorize->setCurrency(\Payconn\Nestpay\Currency::TRY);
 $authorize->setAmount(1);
-$authorize->setInstallment(1);
+$authorize->generateOrderId();
 $authorize->setTestMode(true);
 $response = (new \Payconn\AkBank($token))->authorize($authorize);
 print_r([
