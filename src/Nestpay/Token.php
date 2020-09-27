@@ -6,13 +6,13 @@ use Payconn\Common\TokenInterface;
 
 class Token implements TokenInterface
 {
-    private string $clientId;
+    private $clientId;
 
-    private string $username;
+    private $username;
 
-    private string $password;
+    private $password;
 
-    private ?string $storeKey;
+    private $storeKey;
 
     public function __construct(string $clientId, string $username, string $password, string $storeKey = null)
     {
